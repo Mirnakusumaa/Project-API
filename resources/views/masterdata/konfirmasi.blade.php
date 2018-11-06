@@ -23,32 +23,32 @@
   <tr>
     <td>Nomor Order &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$orders->id_order}}</td>
+    <!-- <td>{{$orders->id_order}}</td> -->
   </tr>
   <tr>
     <td>Nama &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$orders->nama}}</td>
+    <!-- <td>{{$orders->nama}}</td> -->
   </tr>
   <tr>
     <td>Alamat &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$orders->alamat}}</td>
+    <!-- <td>{{$orders->alamat}}</td> -->
   </tr>
   <tr>
     <td>Nomor Telepon &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$orders->no_telp}}</td>
+    <!-- <td>{{$orders->no_telp}}</td> -->
   </tr>
   <tr>
     <td>Email &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$orders->email}}</td>
+    <!-- <td>{{$orders->email}}</td> -->
   </tr>
   <tr>
     <td>Kode Pos &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$orders->kode_pos}}</td>
+    <!-- <td>{{$orders->kode_pos}}</td> -->
   </tr>
 </table>
 <hr>
@@ -92,7 +92,7 @@
   <tr>
     <td>Warna &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$orders->warna}}</td>
+    <!-- <td>{{$orders->warna}}</td> -->
     <td></td>
     <!-- <td>Layanan Tambahan&nbsp</td>
     <td>: &nbsp</td>
@@ -105,16 +105,16 @@
     <td></td>
     <td><strong>Total Bayar&nbsp</strong></td>
     <td><strong>: &nbsp</strong></td>
-    <td>{{$orders->total_harga}}</td>
+    <!-- <td>{{$orders->total_harga}}</td> -->
   </tr>
 </table>
 <br><br>
-<a href="" onclick="event.preventDefault(); document.getElementById('pesan-form').submit();">
+<!-- <a href="" onclick="event.preventDefault(); document.getElementById('pesan-form').submit();"> -->
   <button class="btn-primary">
       Submit
   </button>
  <!-- <input type="submit" name="" class="btn-primary" value="Submit"> -->
- </a>
+ <!-- </a> -->
                                 </div>
                                     </div>
                                     </div>

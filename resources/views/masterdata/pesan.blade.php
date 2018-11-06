@@ -6,7 +6,7 @@
         <div class="row">
 
             <div class="col-md-8 col-md-offset-2">
-                <form role="form" id="pesan-form" action="{{url('pesan')}}" method="POST" name="form" enctype="multipart/form-data">
+                <form role="form" id="pesan-form" action="{{url('kirim')}}" method="POST" name="form" enctype="multipart/form-data">
                     {{csrf_field()}}
                     <!--<legend class="text-center">PESANAN</legend>-->
                     <div class="head_title text-center">
@@ -47,7 +47,7 @@
                             @endif
                         </div>
 
-                        <div class="form-group col-md-6">
+                        <!-- <div class="form-group col-md-6">
                             <label>Email</label>
                             <input type="text" class="form-control" name="email" id="" placeholder="Email">
                             @if ($errors->has('email'))
@@ -55,9 +55,9 @@
                                   <strong>{{ $errors->first('email') }}</strong>
                               </span>
                             @endif
-                        </div>
+                        </div> -->
 
-                        <div class="form-group col-md-6">
+                        <!-- <div class="form-group col-md-6">
                             <label>Kode Pos</label>
                             <input type="text" class="form-control" name="kode_pos" id="kode_pos" placeholder="Kode pos">
                             @if ($errors->has('kode_pos'))
@@ -65,14 +65,14 @@
                                   <strong>{{ $errors->first('kode_pos') }}</strong>
                               </span>
                             @endif
-                        </div>
+                        </div> -->
 
                     </fieldset>
                         <br><br><br>
 
                     <fieldset>
                         <legend>2. Layanan</legend>
-                        <div class="form-group col-md-6">
+                        <!-- <div class="form-group col-md-6">
                             <label>Jenis Layanan</label>
                             <select class="form-control" name="jenis_layanan" id="jenis_layanan">
                                 <option value="">Pilih jenis layanan</option>
@@ -92,9 +92,9 @@
                                   <strong>{{ $errors->first('jenis_layanan') }}</strong>
                               </span>
                             @endif
-                        </div>
+                        </div> -->
 
-                        <div class="form-group col-md-6">
+                        <!-- <div class="form-group col-md-6">
                             <label>Warna</label>
                             <input type="text" class="form-control" name="warna" id="warna" placeholder="Warna">
                             <p style="color: red">*diisi jika memilih layanan repaint</p>
@@ -103,7 +103,7 @@
                         <div class="form-group col-md-6">
                             <label>Jumlah Sepatu</label>
                             <input type="text" class="form-control" name="jml_sepatu" id="jml_sepatu" placeholder="Jumlah sepatu">
-                        </div>
+                        </div> -->
 
                         
                     </fieldset>
@@ -111,11 +111,11 @@
 
                     <div class="form-group">
                         <div class="col-md-12">
-                        	<a href="konfirmasi">
-                        	<button class="btn-primary">
-			                    Lanjut
+                        	<!-- <a href="konfirmasi"> -->
+                        	<button type="submit" class="btn-primary">
+			                    Submit
 			                </button>
-			            	</a>
+			            	<!-- </a> -->
                             <!-- <input type="submit" name="" class="btn-primary" value="Submit"> -->
                         </div>
                     </div>
