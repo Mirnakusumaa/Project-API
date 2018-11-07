@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2018 at 10:30 AM
+-- Generation Time: Nov 07, 2018 at 01:51 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `andrrows`
+-- Database: `project_api`
 --
 
 -- --------------------------------------------------------
@@ -31,9 +31,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `detail_orders` (
   `id_order` int(20) NOT NULL,
   `id_service` int(20) NOT NULL,
-  `warna` varchar(20) NOT NULL,
+  `warna` varchar(20) DEFAULT NULL,
   `jumlah_sepatu` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_orders`
+--
+
+INSERT INTO `detail_orders` (`id_order`, `id_service`, `warna`, `jumlah_sepatu`) VALUES
+(13, 2, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -44,27 +51,25 @@ CREATE TABLE `detail_orders` (
 CREATE TABLE `orders` (
   `id_order` int(20) NOT NULL,
   `id_user` int(20) NOT NULL,
-  `nama` varchar(30) NOT NULL,
-  `alamat` varchar(100) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
   `no_telp` varchar(20) NOT NULL,
   `total_harga` varchar(50) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL,
-  `status` enum('Belum Dibayar','Sudah Dibayar','Sedang Di Proses','Selesai Di Proses','Belum Diambil','Sudah Diambil') NOT NULL
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Triggers `orders`
+-- Dumping data for table `orders`
 --
-DELIMITER $$
-CREATE TRIGGER `total_harga` BEFORE INSERT ON `orders` FOR EACH ROW BEGIN
-SET @service1 = (select harga FROM services WHERE nama_service = new.service1);
-SET @service2 = (SELECT harga FROM services WHERE nama_service = new.service2);
-SET @service3 = (SELECT harga FROM services WHERE nama_service = new.service3);
-SET @layanan_tambahan = (SELECT harga FROM services WHERE nama_service = new.layanan_tambahan);
-SET new.total_harga = (@service1+@service2+@service3+@layanan_tambahan)*new.jumlah_sepatu;
-END
-$$
-DELIMITER ;
+
+INSERT INTO `orders` (`id_order`, `id_user`, `nama`, `alamat`, `no_telp`, `total_harga`, `keterangan`, `status`) VALUES
+(1, 1, 'mirna', 'sewon bantul', '0813214442', NULL, NULL, 'Belum Dibayar'),
+(9, 1, 'fika', 'sewon bantul', '0813214442', NULL, NULL, 'Belum Dibayar'),
+(10, 1, 'fika', 'sewon bantul', '0813214442', NULL, NULL, 'Belum Dibayar'),
+(11, 1, 'mirna', 'malangjiwan bangunharjo sewon bantul', '0813214442', NULL, NULL, 'Belum Dibayar'),
+(12, 1, 'afifah', 'sewon bantul', '0813214442', NULL, NULL, 'Belum Dibayar'),
+(13, 1, 'mirna', 'malangjiwan bangunharjo sewon bantul', '0813214442', NULL, NULL, 'Belum Dibayar');
 
 -- --------------------------------------------------------
 
@@ -74,7 +79,7 @@ DELIMITER ;
 
 CREATE TABLE `services` (
   `id_service` int(20) NOT NULL,
-  `jenis_layanan` varchar(50) NOT NULL,
+  `jenis_layanan` varchar(255) NOT NULL,
   `harga` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -101,12 +106,12 @@ INSERT INTO `services` (`id_service`, `jenis_layanan`, `harga`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id_user` int(20) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` text NOT NULL,
-  `level` enum('admin','customer') NOT NULL,
-  `remember_token` varchar(100) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `level` enum('admin','customer') DEFAULT NULL,
+  `remember_token` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -114,9 +119,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `email`, `password`, `level`, `remember_token`) VALUES
-(12, 'oja', 'ojajnda', '$2y$10$S/UpXS3R/9LDD70NIRjKguaWWloqaVGYkHRRjd4pkqh7exuRg31xa', '', ''),
-(13, 'kusumawati', 'miefue', '$2y$10$E8.tJKBtEh4dKq/4WiqNyeBQezqHmxQXvx1tP4yUmkSYTuvBQRIei', '', ''),
-(17, 'mirna', 'mirnakusumawati38@gmail.com', '$2y$10$dZG0XtNE0FHSRpYzZ7ZeW.YzTmwRiSAn.lpzms3aJ5dZrTug8c38K', '', 'OEdL76Ex5UBbaKYvZR0PouFfSdkoffYpC6FIz82ndEJnaWfoFOlNgtLPi7cq');
+(1, 'mirna', 'mirna@gmail.com', '$2y$10$dZG0XtNE0FHSRpYzZ7ZeW.YzTmwRiSAn.lpzms3aJ5dZrTug8c38K', '', '');
 
 --
 -- Indexes for dumped tables
@@ -156,17 +159,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_order` int(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `services`
---
-ALTER TABLE `services`
-  MODIFY `id_service` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_order` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
@@ -182,7 +180,7 @@ ALTER TABLE `detail_orders`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
