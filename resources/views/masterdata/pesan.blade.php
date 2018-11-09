@@ -72,7 +72,7 @@
 
                     <fieldset>
                         <legend>2. Layanan</legend>
-                        <!-- <div class="form-group col-md-6">
+                        <div class="form-group col-md-6">
                             <label>Jenis Layanan</label>
                             <select class="form-control" name="jenis_layanan" id="jenis_layanan">
                                 <option value="">Pilih jenis layanan</option>
@@ -92,9 +92,9 @@
                                   <strong>{{ $errors->first('jenis_layanan') }}</strong>
                               </span>
                             @endif
-                        </div> -->
+                        </div>
 
-                        <!-- <div class="form-group col-md-6">
+                        <div class="form-group col-md-6">
                             <label>Warna</label>
                             <input type="text" class="form-control" name="warna" id="warna" placeholder="Warna">
                             <p style="color: red">*diisi jika memilih layanan repaint</p>
@@ -103,7 +103,29 @@
                         <div class="form-group col-md-6">
                             <label>Jumlah Sepatu</label>
                             <input type="text" class="form-control" name="jml_sepatu" id="jml_sepatu" placeholder="Jumlah sepatu">
-                        </div> -->
+                        </div>
+
+                        
+                    </fieldset>
+                    <br><br><br>
+
+                    <fieldset>
+                        <legend>2. Ongkos Kirim</legend>
+                        <div class="form-group col-md-6">
+                            <label>Provinsi Asal</label>
+                            <select class="form-control" name="provinsi_asal" id="provinsi_asal">
+                                <option>Pilih provinsi asal</option>
+                            @foreach($list_provinsi as $list_provinsi)
+                                <option>{{$list_provinsi}}</option>
+                            @endforeach
+                                
+                            </select>
+                            @if ($errors->has('jenis_layanan'))
+                              <span class="invalid-feedback" role="alert" style="color: red">
+                                  <strong>{{ $errors->first('jenis_layanan') }}</strong>
+                              </span>
+                            @endif
+                        </div>
 
                         
                     </fieldset>
@@ -123,3 +145,20 @@
                 </form>
         </section>
 @endsection
+
+<!-- @section('script')
+<script type="text/javascript">
+  $(document).ready(function(){
+            $.ajax({
+                type : 'GET',
+                url : ' https://api.rajaongkir.com/starter/province',
+                
+                    success: function (response) {
+
+                    //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                    $("#provinsi_asal").html('');
+                }
+            });
+    });
+</script>
+@endsection -->

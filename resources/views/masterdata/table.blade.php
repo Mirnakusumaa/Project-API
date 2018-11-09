@@ -23,12 +23,16 @@
         <link rel="stylesheet" href="{{ asset('css/plugins.css') }}" />
 
         <!--Theme custom css -->
-        <link rel="stylesheet" href="{{ asset('css/style-order.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style-status.css') }}">
 
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
+        <link rel="stylesheet" href="{{asset('vendor/datatables/jquery.dataTables.min.css')}}">
+        <link rel="stylesheet" href="{{asset('vendor/datatables/buttons.dataTables.min.css')}}">
 
         <script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
+
+
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -41,8 +45,11 @@
                     <div class="row">   
                         <div class="col-md-10 col-md-offset-3 col-sm-12 text-right">
                             <div class="call_us_text">
-                                <a href=""><i class="fa fa-clock-o"></i> Admin 24/7</a>
-                                <a href=""><i class="fa fa-phone"></i>061 9876 5432</a>
+                                <a href="{{ url('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i><span>KELUAR</span></a>
+                                <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                                <!-- <a href=""><i class="fa fa-phone"></i></a> -->
                             </div>
                         </div>
 
@@ -80,130 +87,26 @@
         </header> <!-- End Header Section -->
 
       
+<!--STATUS-->
+        
 
-
-        <section id="features" class="features">
-            <div class="slider_overlay">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_features_content_area text-center  wow fadeIn" data-wow-duration="3s">
-                            <div class="col-md-12">
-                                <div class="head_title text-center">
-                                <h4>KONFIRMASI</h4>
-                                </div>
-                                <div class="konfirmasi">
-                                <div class="single_pakeg_one text-right wow rotateInDownRight">
-                                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-8">
-                                <div class="single_pakeg_text" style="color: #000">
-                                 
-<table>
-  <tr>
-    <th>tabel</th>
-    <th>tanda</th>
-    <th>Isi</th>
-  </tr>
-  <tr>
-    <td>Nomor Order &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->id_order}}</td>
-  </tr>
-  <tr>
-    <td>Nama &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->nama}}</td>
-  </tr>
-  <tr>
-    <td>Alamat &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->alamat}}</td>
-  </tr>
-  <tr>
-    <td>Nomor Telepon &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->no_telp}}</td>
-  </tr>
-
-</table>
-<hr>
-<table>
-<tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <!-- <tr>
-    <td>Jenis Layanan &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->jenis_sepatu}}</td>
-    <td></td>
-    <td>Jenis Service 1 &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->service1}}</td>
-  </tr> -->
-  <!-- <tr>
-    <td>Bahan Sepatu &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->jenis_bahan}}</td>
-    <td></td>
-    <td>Jenis Service 2 &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->service2}}</td>
-  </tr> -->
-  <!-- <tr>
-    <td>Jumlah Sepatu &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->jumlah_sepatu}}</td>
-    <td></td>
-    <td>Jenis Service 3 &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->service3}}</td>
-  </tr>
-  <tr> -->
-    <!-- <td>Warna &nbsp</td>
-    <td>: &nbsp</td> -->
-    <!-- <td>{{$info->warna}}</td> -->
-    <!-- <td></td> -->
-    <!-- <td>Layanan Tambahan&nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->layanan_tambahan}}&nbsp</td> -->
-  <!-- </tr> -->
-  <!-- <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><strong>Total Bayar&nbsp</strong></td>
-    <td><strong>: &nbsp</strong></td>
-    <td>{{$info->total_harga}}</td>
-  </tr> -->
-</table>
-<br><br>
-<a href="status">
-  <button class="btn-primary">
-      Submit
-  </button>
-</a>
-                                </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
+        <section id="footer" class="footer">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="footer text-center">
+                        <div class="head_title text-center">
+                            <h4>{{$title}}</h4>
                         </div>
+                        {!! $dataTable->table() !!}
                     </div>
                 </div>
             </div>
         </section>
 
 
-        
         <div class="scrollup">
             <a href="#"><i class="fa fa-chevron-up"></i></a>
         </div>      
-
 
         <script src="{{ asset('js/vendor/jquery-1.11.2.min.js') }}"></script>
         <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
@@ -211,5 +114,9 @@
         <script src="{{ asset('js/wow/wow.min.js') }}"></script>
         <script src="{{ asset('js/plugins.js') }}"></script>
         <script src="{{ asset('js/main.js') }}"></script>
+        <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('vendor/datatables/dataTables.buttons.min.js')}}"></script>
+        <script src="{{asset('vendor/datatables/buttons.server-side.js')}}"></script>
+        {!! $dataTable->scripts() !!}
     </body>
 </html>

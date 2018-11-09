@@ -23,8 +23,17 @@ Route::get('dashboard', function () {
     return view('masterdata.dashboard');
 });
 
-Route::get('pesan', function () {
-    return view('masterdata.pesan');
-});
+// Route::get('pesan', function () {
+//     return view('masterdata.pesan');
+// });
 
 Route::post('kirim','DashboardController@store');
+
+Route::get('status','DashboardController@index');
+Route::resource('pesan','RajaOngkirController');
+
+// Route::get('ongkir','RajaOngkirController@getProvinsi');
+
+// Route::get('konfirmasi', function () {
+//     return view('masterdata.konfirmasi');
+// });

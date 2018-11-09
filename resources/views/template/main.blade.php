@@ -16,22 +16,22 @@
 
 
         <!--For Plugins external css-->
-        <link rel="stylesheet" href="{{ asset('css/animate/animate.css') }}" />
-        <link rel="stylesheet" href="{{ asset('css/plugins.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/animate/animate.css') }}" >
+        <link rel="stylesheet" href="{{ asset('css/plugins.css') }}" >
 
         <!--Theme custom css -->
         <link rel="stylesheet" href="{{ asset('css/style-pesan.css') }}">
 
         <!--Theme Responsive css-->
-        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" >
 
-        <script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
+        
     </head>
     <body>
         @include('template.header')
-        <section class="content">
+        <!-- <section class="content"> -->
       @yield('content')
-    </section>
+    <!-- </section> -->
         
 
         @include('template.footer')
@@ -47,6 +47,9 @@
         <script src="{{ asset('js/wow/wow.min.js') }}"></script>
         <script src="{{ asset('js/plugins.js') }}"></script>
         <script src="{{ asset('js/main.js') }}"></script>
+        <script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        @yield('script')
     </body>
 </html>
 

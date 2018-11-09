@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Order;
 use App\DetailOrder;
+use App\DataTables\StatusDataTable;
 // use App\Http\Controllers\Auth;
 
 class DashboardController extends Controller
@@ -15,9 +16,11 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(StatusDataTable $status)
     {
-        return view('masterdata.dashboard');
+        $title= 'Status';
+        // $link = route('barang.create');
+        return $status->render('masterdata.table',compact('title'));
     }
 
     /**
@@ -39,20 +42,23 @@ class DashboardController extends Controller
     public function store(Request $request)
     {
        $info= new Order;
-       // $detail= new DetailOrder;
+       
         $info->id_user=Auth::user()->id_user;//yang kiri harus sama dengan database, kanan sama dgn name diform input
-        // $detail->id_service=$request->jenis_layanan;
         $info->nama=$request->nama;//yang kiri harus sama dengan database, kanan sama dgn name diform input
         $info->alamat=$request->alamat;
         $info->no_telp=$request->no_telp;
-        // $order->email=$request->email;
-        // $order->kode_pos=$request->kode_pos;
-        // $detail->warna=$request->warna;
-        // $detail->jumlah_sepatu=$request->jml_sepatu;
         $info->status='Belum Dibayar';
         $info->save();
+        // $order->email=$request->email;
+        // $order->kode_pos=$request->kode_pos;
+        $detail= new DetailOrder;
+        $detail->id_service=$request->jenis_layanan;
+        $detail->warna=$request->warna;
+        $detail->jumlah_sepatu=$request->jml_sepatu;
+        $detail->id_order=Order::all()->last()->id_order;
+        $detail->save();
         
-        return view('masterdata.konfirmasi')->compact('pesan');
+        return view('masterdata.konfirmasi', compact('info', 'detail'));
     }
 
     /**
