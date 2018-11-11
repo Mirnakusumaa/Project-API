@@ -115,8 +115,8 @@
                             <label>Provinsi Asal</label>
                             <select class="form-control" name="provinsi_asal" id="provinsi_asal">
                                 <option>Pilih provinsi asal</option>
-                            @foreach($list_provinsi as $list_provinsi)
-                                <option>{{$list_provinsi}}</option>
+                            @foreach($results->province as $key => $value)
+                                <option>{{$value}}</option>
                             @endforeach
                                 
                             </select>
