@@ -135,15 +135,13 @@
     <th></th>
     <th></th>
   </tr>
-  <!-- <tr>
+  <tr>
     <td>Jenis Layanan &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$info->jenis_sepatu}}</td>
+    <td>{{$detail->jenis_layanan}}</td>
     <td></td>
-    <td>Jenis Service 1 &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->service1}}</td>
-  </tr> -->
+    
+  </tr>
   <!-- <tr>
     <td>Bahan Sepatu &nbsp</td>
     <td>: &nbsp</td>

@@ -28,9 +28,10 @@ Route::get('dashboard', function () {
 // });
 
 Route::post('kirim','DashboardController@store');
-
+Route::get('konfirmasi', 'DashboardController@show');
 Route::get('status','DashboardController@index');
-Route::resource('pesan','RajaOngkirController');
+Route::get('pesan','RajaOngkirController@index');
+Route::get('kota-tujuan/{prov}','RajaOngkirController@getKota');
 
 // Route::get('ongkir','RajaOngkirController@getProvinsi');
 

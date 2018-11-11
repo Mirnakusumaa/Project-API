@@ -1,5 +1,5 @@
-<!doctype html>
-<html class="no-js" lang=""> 
+<!DOCTYPE html>
+<html> 
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -36,9 +36,7 @@
 
         @include('template.footer')
         
-        <div class="scrollup">
-            <a href="#"><i class="fa fa-chevron-up"></i></a>
-        </div>      
+             
 
 
         <script src="{{ asset('js/vendor/jquery-1.11.2.min.js') }}"></script>

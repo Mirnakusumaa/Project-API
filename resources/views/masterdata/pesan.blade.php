@@ -110,21 +110,24 @@
                     <br><br><br>
 
                     <fieldset>
-                        <legend>2. Ongkos Kirim</legend>
+                        <legend>2. Pengiriman</legend>
+                        <p style="color: red">*diisi jika menggunakan jasa antar</p>
                         <div class="form-group col-md-6">
-                            <label>Provinsi Asal</label>
-                            <select class="form-control" name="provinsi_asal" id="provinsi_asal">
-                                <option>Pilih provinsi asal</option>
-                            @foreach($results->province as $key => $value)
-                                <option>{{$value}}</option>
+                            <label>Provinsi Tujuan</label>
+                            <select class="form-control" name="provinsi_tujuan" id="provinsi_tujuan">
+                                <option>Pilih provinsi Tujuan</option>
+                            @foreach($results->rajaongkir->results as $key => $value)
+                                <option value="{{$value->province_id}}">{{$value->province}}</option>
                             @endforeach
-                                
                             </select>
-                            @if ($errors->has('jenis_layanan'))
-                              <span class="invalid-feedback" role="alert" style="color: red">
-                                  <strong>{{ $errors->first('jenis_layanan') }}</strong>
-                              </span>
-                            @endif
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Kota/Kabupaten Tujuan</label>
+                            <select class="form-control" name="kota_tujuan" id="kota_tujuan">
+                                <option>Pilih kota/kabupaten Tujuan</option>
+                            
+                            </select>
                         </div>
 
                         
@@ -146,19 +149,28 @@
         </section>
 @endsection
 
-<!-- @section('script')
+
+@section('script')
+
 <script type="text/javascript">
+    console.log({{url('kota-tujuan')}});
   $(document).ready(function(){
+    $('#provinsi_tujuan').change(function(){
+        var prov = $('#provinsi_tujuan').val();
             $.ajax({
                 type : 'GET',
-                url : ' https://api.rajaongkir.com/starter/province',
-                
-                    success: function (response) {
+                url : "{{url('kota-tujuan')}}" + '/' + prov,
 
+                    success: function (data) {
+                        
+                        
+                          $("#kota_tujuan").html(data); 
+                        
                     //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
-                    $("#provinsi_asal").html('');
+                    
                 }
             });
+        });
     });
 </script>
-@endsection -->
+@endsection

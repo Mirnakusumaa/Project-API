@@ -87,9 +87,9 @@ $(document).ready(function(){
 					.fadeIn(function(){
 						title.text("Log in is successful");
 						button.attr("data-dismiss", "modal");
-					});
+					});*/
 		}
-	});*/
+	});
 
 	$('#myModal').on('hidden.bs.modal', function (e) {
 		var inputs = $('form input');
@@ -109,6 +109,7 @@ $(document).ready(function(){
 				.removeAttr("data-dismiss");
                 
 	});
+});
 //login pop up sign up
 	$(document).ready(function(){
     $('.modal-footer button').click(function(){
@@ -139,9 +140,9 @@ $(document).ready(function(){
 					.fadeIn(function(){
 						title.text("Log in is successful");
 						button.attr("data-dismiss", "modal");
-					});
+					});*/
 		}
-	});*/
+	});
 
 	$('#myModal2').on('hidden.bs.modal', function (e) {
 		var inputs = $('form input');

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Order;
 use App\DetailOrder;
 use App\DataTables\StatusDataTable;
+use DB;
 // use App\Http\Controllers\Auth;
 
 class DashboardController extends Controller
@@ -58,7 +59,7 @@ class DashboardController extends Controller
         $detail->id_order=Order::all()->last()->id_order;
         $detail->save();
         
-        return view('masterdata.konfirmasi', compact('info', 'detail'));
+        return redirect('konfirmasi');
     }
 
     /**
@@ -67,9 +68,16 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    
+
+    public function show()
     {
-        //
+        $tampil = DB::table('detail_orders')
+                ->join('orders', 'detail_orders.id_order', '=', 'orders.id_order')
+                ->join('services', 'detail_orders.id_service', '=', 'services.id_service')
+                ->select('detail_orders.*','orders.nama','orders.alamat','orders.no_telp','orders.total_harga','orders.keterangan','services.jenis_layanan')
+                ->get()->toArray();
+        return view('masterdata.konfirmasi', compact('tampil'));
     }
 
     /**
