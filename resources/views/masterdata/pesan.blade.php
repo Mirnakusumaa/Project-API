@@ -47,26 +47,6 @@
                             @endif
                         </div>
 
-                        <!-- <div class="form-group col-md-6">
-                            <label>Email</label>
-                            <input type="text" class="form-control" name="email" id="" placeholder="Email">
-                            @if ($errors->has('email'))
-                              <span class="invalid-feedback" role="alert" style="color: red">
-                                  <strong>{{ $errors->first('email') }}</strong>
-                              </span>
-                            @endif
-                        </div> -->
-
-                        <!-- <div class="form-group col-md-6">
-                            <label>Kode Pos</label>
-                            <input type="text" class="form-control" name="kode_pos" id="kode_pos" placeholder="Kode pos">
-                            @if ($errors->has('kode_pos'))
-                              <span class="invalid-feedback" role="alert" style="color: red">
-                                  <strong>{{ $errors->first('kode_pos') }}</strong>
-                              </span>
-                            @endif
-                        </div> -->
-
                     </fieldset>
                         <br><br><br>
 
@@ -104,7 +84,10 @@
                             <label>Jumlah Sepatu</label>
                             <input type="text" class="form-control" name="jml_sepatu" id="jml_sepatu" placeholder="Jumlah sepatu">
                         </div>
-
+                        <div class="form-group col-md-6">
+                            <label>Keterangan</label>
+                            <input type="text" class="form-control" name="Keterangan" id="Keterangan" placeholder="Keterangan">
+                        </div>
                         
                     </fieldset>
                     <br><br><br>
@@ -130,6 +113,21 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-md-6">
+                            <label>Berat</label>
+                            <input type="text" class="form-control" name="berat" id="berat" placeholder="Berat">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <input type="button" value="Cek" id="cek"  >
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Biaya Antar</label>
+                            
+                            <input type="text" class="form-control" name="ongkir" id="ongkir">
+                            
+                        </div>
                         
                     </fieldset>
                     <br><br><br>
@@ -140,12 +138,13 @@
                         	<button type="submit" class="btn-primary">
 			                    Submit
 			                </button>
-			            	<!-- </a> -->
-                            <!-- <input type="submit" name="" class="btn-primary" value="Submit"> -->
+			            	
                         </div>
                     </div>
 
                 </form>
+
+                
         </section>
 @endsection
 
@@ -153,7 +152,7 @@
 @section('script')
 
 <script type="text/javascript">
-    console.log({{url('kota-tujuan')}});
+    // console.log({{url('kota-tujuan')}});
   $(document).ready(function(){
     $('#provinsi_tujuan').change(function(){
         var prov = $('#provinsi_tujuan').val();
@@ -168,6 +167,20 @@
                         
                     //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
                     
+                }
+            });
+        });
+
+    $('#cek').click(function(){
+        var tujuan = $('#kota_tujuan').val();
+        var berat = $('#berat').val();
+            $.ajax({
+                type : 'POST',
+                url : "{{url('cek-ongkir')}}" + '/' + tujuan + '/' + berat,
+
+                    success: function (data) {
+                        
+                          $("#ongkir").text(data);  
                 }
             });
         });

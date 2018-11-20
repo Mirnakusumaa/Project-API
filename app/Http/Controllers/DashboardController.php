@@ -43,20 +43,25 @@ class DashboardController extends Controller
     public function store(Request $request)
     {
        $info= new Order;
-       
         $info->id_user=Auth::user()->id_user;//yang kiri harus sama dengan database, kanan sama dgn name diform input
         $info->nama=$request->nama;//yang kiri harus sama dengan database, kanan sama dgn name diform input
         $info->alamat=$request->alamat;
         $info->no_telp=$request->no_telp;
+        $info->keterangan=$request->keterangan;
         $info->status='Belum Dibayar';
-        $info->save();
+        
+        
         // $order->email=$request->email;
         // $order->kode_pos=$request->kode_pos;
         $detail= new DetailOrder;
         $detail->id_service=$request->jenis_layanan;
-        $detail->warna=$request->warna;
+        $harga=DB::table('services')->where('jenis_layanan',$request->jenis_layanan)->select('harga');
         $detail->jumlah_sepatu=$request->jml_sepatu;
+        // $info->total_harga= $harga*($request->jml_sepatu);
+        $detail->warna=$request->warna;
+        
         $detail->id_order=Order::all()->last()->id_order;
+        $info->save();
         $detail->save();
         
         return redirect('konfirmasi');
@@ -75,8 +80,8 @@ class DashboardController extends Controller
         $tampil = DB::table('detail_orders')
                 ->join('orders', 'detail_orders.id_order', '=', 'orders.id_order')
                 ->join('services', 'detail_orders.id_service', '=', 'services.id_service')
-                ->select('detail_orders.*','orders.nama','orders.alamat','orders.no_telp','orders.total_harga','orders.keterangan','services.jenis_layanan')
-                ->get()->toArray();
+                ->select('detail_orders.*','orders.nama','orders.alamat','orders.no_telp','orders.total_harga','orders.keterangan','orders.ongkir','services.jenis_layanan','services.harga')
+                ->get()->last();
         return view('masterdata.konfirmasi', compact('tampil'));
     }
 

@@ -20,11 +20,11 @@
                                             <img src="{{ asset('images/k.png') }}" alt="" />
                                         </a>
                                     </div>
-                                    <div class="main_slider_content2 wow zoomIn col-md-12" data-wow-duration="1s">
+                                    <!-- <div class="main_slider_content2 wow zoomIn col-md-12" data-wow-duration="1s">
                                         <a href="bayar">
                                             <img src="{{ asset('images/b.png') }}" alt="" />
                                         </a>
-                                    </div>
+                                    </div> -->
                                     <div class="main_slider_content2 wow zoomIn col-md-12" data-wow-duration="1s">
                                         <a href="status">
                                             <img src="{{ asset('images/s.png') }}" alt="" />

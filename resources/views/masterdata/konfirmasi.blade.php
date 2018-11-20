@@ -98,86 +98,74 @@
                                  
 <table>
   <tr>
-    <th>tabel</th>
-    <th>tanda</th>
-    <th>Isi</th>
-  </tr>
-  <tr>
     <td>Nomor Order &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$info->id_order}}</td>
+    <td>{{$tampil->id_order}}</td>
   </tr>
   <tr>
     <td>Nama &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$info->nama}}</td>
+    <td>{{$tampil->nama}}</td>
   </tr>
   <tr>
     <td>Alamat &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$info->alamat}}</td>
+    <td>{{$tampil->alamat}}</td>
   </tr>
   <tr>
     <td>Nomor Telepon &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$info->no_telp}}</td>
+    <td>{{$tampil->no_telp}}</td>
   </tr>
 
 </table>
 <hr>
 <table>
-<tr>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
   <tr>
     <td>Jenis Layanan &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$detail->jenis_layanan}}</td>
+    <td>{{$tampil->jenis_layanan}}</td>
     <td></td>
-    
   </tr>
-  <!-- <tr>
-    <td>Bahan Sepatu &nbsp</td>
+  <tr>
+    <td>Harga &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$info->jenis_bahan}}</td>
+    <td>{{$tampil->harga}}</td>
     <td></td>
-    <td>Jenis Service 2 &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->service2}}</td>
-  </tr> -->
-  <!-- <tr>
+  </tr>
+  <tr>
     <td>Jumlah Sepatu &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$info->jumlah_sepatu}}</td>
+    <td>{{$tampil->jumlah_sepatu}}</td>
     <td></td>
-    <td>Jenis Service 3 &nbsp</td>
-    <td>: &nbsp</td>
-    <td>{{$info->service3}}</td>
   </tr>
-  <tr> -->
-    <!-- <td>Warna &nbsp</td>
-    <td>: &nbsp</td> -->
-    <!-- <td>{{$info->warna}}</td> -->
-    <!-- <td></td> -->
-    <!-- <td>Layanan Tambahan&nbsp</td>
+  <tr>
+    <td>Warna &nbsp</td>
     <td>: &nbsp</td>
-    <td>{{$info->layanan_tambahan}}&nbsp</td> -->
-  <!-- </tr> -->
-  <!-- <tr>
+    <td>{{$tampil->warna}}</td>
     <td></td>
+  </tr>
+  <tr>
+    <td>Keterangan &nbsp</td>
+    <td>: &nbsp</td>
+    <td>{{$tampil->keterangan}}</td>
     <td></td>
+  </tr>
+</table>
+<hr>
+<table>
+  <tr>
+    <td>Biaya Antar &nbsp</td>
+    <td>: &nbsp</td>
+    <td>{{$tampil->ongkir}}</td>
     <td></td>
-    <td></td>
-    <td><strong>Total Bayar&nbsp</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Total Harga &nbsp</strong></td>
     <td><strong>: &nbsp</strong></td>
-    <td>{{$info->total_harga}}</td>
-  </tr> -->
+    <td><strong>{{$tampil->total_harga}}</strong></td>
+    <td></td>
+  </tr>
 </table>
 <br><br>
 <a href="status">
