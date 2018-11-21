@@ -32,6 +32,7 @@ Route::get('konfirmasi', 'DashboardController@show');
 Route::get('status','DashboardController@index');
 Route::get('pesan','RajaOngkirController@index');
 Route::get('kota-tujuan/{prov}','RajaOngkirController@getKota');
+Route::post('cek-ongkir','RajaOngkirController@getOngkir');
 
 // Route::get('ongkir','RajaOngkirController@getProvinsi');
 

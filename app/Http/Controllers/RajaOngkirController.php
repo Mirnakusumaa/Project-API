@@ -54,38 +54,32 @@ class RajaOngkirController extends Controller
         
     }
 
-    public function getOngkir($tujuan)
+    public function getOngkir(Request $request)
     {
     	$apiKey = '472750206e7ccd1a15590beaf7bb7f45';
 	    $url = 'https://api.rajaongkir.com/starter/cost';
+	    $tujuan = $request->tujuan;
+	    $berat = $request->berat;
 
 	    $content = array(
-	    	'headers' => [
-		        // 'Authorization' => session()->get('access_token'),
-		        //'Authorization' => $ses,
-		        'Accept'        => 'application/json',
-		        'Content-Type'  => 'application/json'
-		      ],
-	    	'json' => [
-		    	'query'=> [
+	    	'form_params' => [
 		    		'key'=> $apiKey,
 		    		'origin'=> "39",
 		    		'destination' => $tujuan,
-		    		'weight' => 1000,
+		    		'weight' => $berat,
 		    		'courier' => "jne",
-		    	]
 		    ]
 	    );
 	    
 	    $response = $this->client->post($url , $content);
 	    $cek = $response->getBody();
 	    $cek = json_decode($cek)->rajaongkir->results[0]->costs;
+	    // dd($cek);
 	    $cek = collect($cek)->where('service', 'REG')->first();
-	    $harga = $cek->cost[0]->value;
+	    $harga = $cek->costs[0]->value;
 	    
 	    return response()->json($harga);
-        // return view('masterdata.pesan', compact('cek'));
-        // dd($kota);
+
         
     }
     

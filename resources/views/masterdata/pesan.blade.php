@@ -176,7 +176,12 @@
         var berat = $('#berat').val();
             $.ajax({
                 type : 'POST',
-                url : "{{url('cek-ongkir')}}" + '/' + tujuan + '/' + berat,
+                url : "{{url('cek-ongkir')}}",
+                data : {
+                    'tujuan' : tujuan,
+                    'berat' : berat,
+                    '_token' : "{{csrf_token()}}"
+                },
 
                     success: function (data) {
                         
