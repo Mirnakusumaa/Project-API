@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Order;
 use App\DetailOrder;
+use App\Service;
 use App\DataTables\StatusDataTable;
 use DB;
 // use App\Http\Controllers\Auth;
@@ -42,26 +43,17 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-       $info= new Order;
-        $info->id_user=Auth::user()->id_user;//yang kiri harus sama dengan database, kanan sama dgn name diform input
-        $info->nama=$request->nama;//yang kiri harus sama dengan database, kanan sama dgn name diform input
-        $info->alamat=$request->alamat;
-        $info->no_telp=$request->no_telp;
-        $info->keterangan=$request->keterangan;
-        $info->status='Belum Dibayar';
-        
-        
-        // $order->email=$request->email;
-        // $order->kode_pos=$request->kode_pos;
+        $order= $request->only(['nama','alamat','no_telp','keterangan','ongkir']);
+        $order['id_user']=Auth::user()->id_user;
+        $order['status']='Belum Dibayar';
+        $order['total_harga']=Service::find($request->jenis_layanan)->harga*$request->jml_sepatu+$request->ongkir;
+        $info = Order::insertGetId($order);
+
         $detail= new DetailOrder;
+        $detail->id_order=$info;
         $detail->id_service=$request->jenis_layanan;
-        $harga=DB::table('services')->where('jenis_layanan',$request->jenis_layanan)->select('harga');
         $detail->jumlah_sepatu=$request->jml_sepatu;
-        // $info->total_harga= $harga*($request->jml_sepatu);
         $detail->warna=$request->warna;
-        
-        $detail->id_order=Order::all()->last()->id_order;
-        $info->save();
         $detail->save();
         
         return redirect('konfirmasi');

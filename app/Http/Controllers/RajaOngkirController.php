@@ -64,7 +64,7 @@ class RajaOngkirController extends Controller
 	    $content = array(
 	    	'form_params' => [
 		    		'key'=> $apiKey,
-		    		'origin'=> "39",
+		    		'origin'=> "501",
 		    		'destination' => $tujuan,
 		    		'weight' => $berat,
 		    		'courier' => "jne",
@@ -76,9 +76,9 @@ class RajaOngkirController extends Controller
 	    $cek = json_decode($cek)->rajaongkir->results[0]->costs;
 	    // dd($cek);
 	    $cek = collect($cek)->where('service', 'REG')->first();
-	    $harga = $cek->costs[0]->value;
-	    
-	    return response()->json($harga);
+	    $harga = $cek->cost[0]->value;
+	    return $harga;
+	    // return response()->json($harga);
 
         
     }

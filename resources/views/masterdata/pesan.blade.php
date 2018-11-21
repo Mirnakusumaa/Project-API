@@ -184,8 +184,7 @@
                 },
 
                     success: function (data) {
-                        
-                          $("#ongkir").text(data);  
+                          $('#ongkir').val(data); 
                 }
             });
         });
